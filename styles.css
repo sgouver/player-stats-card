@@ -1,6 +1,6 @@
 body {
     display: grid;
-    width: 450px;
+    width: 400px;
     margin: auto;
     background-color: #f7f2e5;
 }
@@ -31,6 +31,10 @@ main #player-img {
     background: url(./assets/background_pattern.png) right/74% #ffffff no-repeat;
     padding: 0 15px;
     display: grid;
+}
+
+main #player-img img {
+    padding-top: 20px;
 }
 
 #player-team-flag {
