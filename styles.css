@@ -28,16 +28,28 @@ select {
 }
 
 main #player-img {
-    background-color: #ffffff;
+    background: url(./assets/background_pattern.png) right/74% #ffffff no-repeat;
     padding: 0 15px;
     display: grid;
 }
 
 #player-team-flag {
-    background: url(./assets/badges_sprite.png) ;
-    background-repeat: no-repeat;
+    background: url(./assets/badges_sprite.png) no-repeat;
     height: 100px;
     width: 100px;
+    border-radius: 50%;
+    border: 11px solid #ffffff;
+    margin-top: -65px;
+    position: relative;
+    margin-left: auto;
+    margin-right: 35px;
+    margin-bottom: -57px;
+}
+
+#player-info {
+    background-color: #e90052;
+    padding: 5px 25px;
+    font-family: "Arial";
 }
 
 #player-team-flag.flag-none {
