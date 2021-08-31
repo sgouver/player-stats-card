@@ -28,10 +28,12 @@
       "stats": [
         {
           "name": "goals",
+          "title": "Goals",
           "value": 5
         },
         {
           "name": "losses",
+          "title": "Goals",
           "value": 20
         },
         {
@@ -92,18 +94,22 @@
       "stats": [
         {
           "name": "goals",
+          "title": "Goals",
           "value": 65
         },
         {
           "name": "losses",
+          "title": "Losses",
           "value": 49
         },
         {
           "name": "wins",
+          "title": "Wins",
           "value": 149
         },
         {
           "name": "draws",
+          "title": "Drawa",
           "value": 35
         },
         {
@@ -116,6 +122,7 @@
         },
         {
           "name": "appearances",
+          "title": "Appearances",
           "value": 232
         },
         {

@@ -28,22 +28,56 @@ const playerList = async () => {
         const playerInfo = infoSector.querySelector('#player-info-position');
         const playerStats = infoSector.querySelector('#player-stats');
 
+        const appearances = playerStats.querySelector('#appearances');
+        const goals = playerStats.querySelector('#goals');
+        const assists = playerStats.querySelector('#goal_assist');
+        const goalsPerMatch = playerStats.querySelector('#goals_per_match');
+        const passesPerMinute = playerStats.querySelector('#passes_per_minute');
+
         dataInJson.players.forEach(card => {
             if (card.player.id == id) {
                 const fullName = `${card.player.name.first} ${card.player.name.last}`;
                 const image = `<img src="./assets/p${card.player.id}.png" alt="image of ${fullName}" width="500" height="600">`
                 const position = `${card.player.info.positionInfo}`
 
+                let statistic;
 
+                const totalMatches = card.stats
+                    .filter(element => {
+                        return (
+                            element.name == "wins" ||
+                            element.name == "losses" ||
+                            element.name == "draws"
+                        )
+                    }).reduce((a, b) => ({value: a.value + b.value}));
+                
                 card.stats.forEach(stat => {
-                    const statistic = `<li>${stat.name} ${stat.value}</li>`
+                        if (stat.name == 'appearances') {
+                            statistic = `<span class="name">Appearances</span> <span class="value">${stat.value}</span>`;
 
-                    playerStats.insertAdjacentHTML('beforeend', statistic)
+                            appearances.innerHTML = statistic;
+                        } 
+                        
+                        if (stat.name == 'goals') {
+                            statistic = `<span class="name">Goals</span> <span class="value">${stat.value}</span>`;
+
+                            goals.innerHTML = statistic;
+                        }
+
+                        if (stat.name == 'goal_assist') {
+                            statistic = `<span class="name">Assists</span> <span class="value">${stat.value}</span>`;
+
+                            assists.innerHTML = statistic;
+                        }
+
+                        if (stat.name == 'goals' && totalMatches) {
+                            let gpm = Math.ceil(stat.value / totalMatches.value * 100) / 100;
+                            
+                            statistic = `<span class="name">Goals per match</span> <span class="value">${gpm}</span>`;
+
+                            goalsPerMatch.innerHTML = statistic;
+                        }
                 })
-
-                /* const goals = `${card.player.stats.appearances}`
-                const appearances = `${card.player.stats.appearances}`
-                const appearances = `${card.player.stats.appearances}` */
 
                 imageSector.innerHTML = image;
                 playerName.innerHTML = fullName;
