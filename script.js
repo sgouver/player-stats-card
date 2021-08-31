@@ -109,6 +109,8 @@ const playerList = async () => {
     }
 
     const selectPlayer = () => {
+        addData(dataInJson.players[0].player.id);
+
         selectNode.addEventListener("change", function(e) {
             addData(selectNode.value);
         });
