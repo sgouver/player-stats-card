@@ -9,6 +9,7 @@ const playerList = async () => {
     const dataInJson = await getData();
     const temp = document.querySelector("template");
     const selectNode = temp.content.querySelector('#player-select');
+    const imageSector = document.querySelector('#player-img');
 
     dataInJson.players.forEach(card => {
         const playerID = `${card.player.id}`;
@@ -20,9 +21,14 @@ const playerList = async () => {
 
     document.querySelector("header").appendChild(selectNode);
 
+    const addImage = (id) => {
+        const image = `<img src="./assets/p${id}.png" alt="image of" width="500" height="600">`
+        imageSector.innerHTML = image;
+    }
+
     const selectPlayer = () => {
-        selectNode.addEventListener("change", function() {
-            console.log(selectNode.value);
+        selectNode.addEventListener("change", function(e) {
+            addImage(selectNode.value);
         });
     }
     
