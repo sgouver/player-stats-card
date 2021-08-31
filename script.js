@@ -41,7 +41,23 @@ const playerList = async () => {
             if (card.player.id == id) {
                 const fullName = `${card.player.name.first} ${card.player.name.last}`;
                 const image = `<img src="./assets/p${card.player.id}.png" alt="image of ${fullName}" width="200">`;
-                const position = `${card.player.info.positionInfo}`;
+                let position;
+
+                if(card.player.info.position === "D") {
+                    position = "Defender"
+                }
+
+                if(card.player.info.position === "F") {
+                    position = "Forward"
+                }
+                
+                if(card.player.info.position === "M") {
+                    position = "Midfielder"
+                }
+
+                if(card.player.info.position === "G") {
+                    position = "Goalkeeper"
+                }
                 
                 teamFlag.setAttribute("class", `flag-${card.player.currentTeam.id}`);
 
