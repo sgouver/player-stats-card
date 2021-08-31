@@ -26,13 +26,24 @@ const playerList = async () => {
     const addData = (id) => {
         const playerName = infoSector.querySelector('#player-info-name');
         const playerInfo = infoSector.querySelector('#player-info-position');
+        const playerStats = infoSector.querySelector('#player-stats');
 
         dataInJson.players.forEach(card => {
             if (card.player.id == id) {
                 const fullName = `${card.player.name.first} ${card.player.name.last}`;
                 const image = `<img src="./assets/p${card.player.id}.png" alt="image of ${fullName}" width="500" height="600">`
                 const position = `${card.player.info.positionInfo}`
-                
+
+
+                card.stats.forEach(stat => {
+                    const statistic = `<li>${stat.name} ${stat.value}</li>`
+
+                    playerStats.insertAdjacentHTML('beforeend', statistic)
+                })
+
+                /* const goals = `${card.player.stats.appearances}`
+                const appearances = `${card.player.stats.appearances}`
+                const appearances = `${card.player.stats.appearances}` */
 
                 imageSector.innerHTML = image;
                 playerName.innerHTML = fullName;
