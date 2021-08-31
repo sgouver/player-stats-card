@@ -29,6 +29,8 @@ select {
 
 main #player-img {
     background-color: #ffffff;
+    padding: 0 15px;
+    display: grid;
 }
 
 #player-team-flag {
