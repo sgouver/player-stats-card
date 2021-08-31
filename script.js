@@ -40,7 +40,7 @@ const playerList = async () => {
         dataInJson.players.forEach(card => {
             if (card.player.id == id) {
                 const fullName = `${card.player.name.first} ${card.player.name.last}`;
-                const image = `<img src="./assets/p${card.player.id}.png" alt="image of ${fullName}" width="500" height="600">`;
+                const image = `<img src="./assets/p${card.player.id}.png" alt="image of ${fullName}" width="250">`;
                 const position = `${card.player.info.positionInfo}`;
                 
                 teamFlag.setAttribute("class", `flag-${card.player.currentTeam.id}`);

@@ -1,3 +1,36 @@
+body {
+    display: grid;
+    width: 450px;
+    margin: auto;
+    background-color: #f7f2e5;
+}
+
+header {
+    padding: 25px;
+    background-color: #ffffff;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    background-color: #eaeaea;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 12px;
+    background-size: 20px;
+}
+
+main #player-img {
+    background-color: #ffffff;
+}
+
 #player-team-flag {
     background: url(./assets/badges_sprite.png) ;
     background-repeat: no-repeat;
