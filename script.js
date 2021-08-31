@@ -19,6 +19,14 @@ const playerList = async () => {
     });
 
     document.querySelector("header").appendChild(selectNode);
+
+    const selectPlayer = () => {
+        selectNode.addEventListener("change", function() {
+            console.log(selectNode.value);
+        });
+    }
+    
+    selectPlayer();
 };
 
-playerList()
+playerList(); 
