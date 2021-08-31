@@ -12,6 +12,9 @@ const playerList = async () => {
     const selectNode = temp.content.querySelector('#player-select');
     const imageSector = document.querySelector('#player-img');
     const infoSector = document.querySelector('#player-info');
+    const teamFlag = document.querySelector('#player-team-flag');
+
+    teamFlag.setAttribute("class", "flag-none");
 
     dataInJson.players.forEach(card => {
         const playerID = `${card.player.id}`;
@@ -27,7 +30,6 @@ const playerList = async () => {
         const playerName = infoSector.querySelector('#player-info-name');
         const playerInfo = infoSector.querySelector('#player-info-position');
         const playerStats = infoSector.querySelector('#player-stats');
-        const teamFlag = document.querySelector('#player-team-flag');
 
         const appearances = playerStats.querySelector('#appearances');
         const goals = playerStats.querySelector('#goals');
@@ -40,8 +42,8 @@ const playerList = async () => {
                 const fullName = `${card.player.name.first} ${card.player.name.last}`;
                 const image = `<img src="./assets/p${card.player.id}.png" alt="image of ${fullName}" width="500" height="600">`;
                 const position = `${card.player.info.positionInfo}`;
-                teamFlag.classList.add(`flag-${card.player.currentTeam.id}`);
-                teamFlag.classList.add(`flag-${card.player.currentTeam.shortName}`);
+                
+                teamFlag.setAttribute("class", `flag-${card.player.currentTeam.id}`);
 
                 let statistic;
 

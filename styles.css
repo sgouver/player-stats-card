@@ -3,5 +3,28 @@
     background-repeat: no-repeat;
     height: 100px;
     width: 100px;
+}
+
+#player-team-flag.flag-none {
+    background-position: 100% 50%;
+}
+
+#player-team-flag.flag-21 {
+    background-position: -500px -1000px;
+}
+
+#player-team-flag.flag-11 {
+    background-position: -800px -700px;
+}
+
+#player-team-flag.flag-12 {
+    background-position: -600px -800px;
+}
+
+#player-team-flag.flag-1 {
+    background-position: -100px -100px;
+}
+
+#player-team-flag.flag-26 {
     background-position: 0 0;
 }
