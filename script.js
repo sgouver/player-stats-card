@@ -41,7 +41,15 @@ const playerList = async () => {
                 const position = `${card.player.info.positionInfo}`
 
                 let statistic;
-
+                
+                const totalPasses = card.stats
+                    .filter(element => {
+                        return (
+                            element.name == "fwd_pass" ||
+                            element.name == "backward_pass"
+                        )
+                    }).reduce((a, b) => ({value: a.value + b.value}));
+                
                 const totalMatches = card.stats
                     .filter(element => {
                         return (
@@ -50,7 +58,7 @@ const playerList = async () => {
                             element.name == "draws"
                         )
                     }).reduce((a, b) => ({value: a.value + b.value}));
-                
+
                 card.stats.forEach(stat => {
                         if (stat.name == 'appearances') {
                             statistic = `<span class="name">Appearances</span> <span class="value">${stat.value}</span>`;
@@ -76,6 +84,14 @@ const playerList = async () => {
                             statistic = `<span class="name">Goals per match</span> <span class="value">${gpm}</span>`;
 
                             goalsPerMatch.innerHTML = statistic;
+                        }
+
+                        if (stat.name == 'mins_played' && totalPasses) {
+                            let pmp = Math.round(totalPasses.value / stat.value * 100) / 100;
+
+                            statistic = `<span class="name">Passes per minute</span> <span class="value">${pmp}</span>`;
+
+                            passesPerMinute.innerHTML = statistic;
                         }
                 })
 
