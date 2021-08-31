@@ -7,8 +7,18 @@ const getData = async () => {
 
 const playerList = async () => {
     const dataInJson = await getData();
-    const data = await JSON.stringify(dataInJson);
-    console.log(data);
+    const temp = document.querySelector("template");
+    const selectNode = temp.content.querySelector('#player-select');
+
+    dataInJson.players.forEach(card => {
+        const playerID = `${card.player.id}`;
+        const fullName = `${card.player.name.first} ${card.player.name.last}`;
+        const optionNode = `<option value="${playerID}">${fullName}</option>`;
+
+        selectNode.insertAdjacentHTML('beforeend', optionNode);
+    });
+
+    document.querySelector("header").appendChild(selectNode);
 };
 
 playerList()
