@@ -1,3 +1,4 @@
+///Fetch DATA from the local json file 
 const getData = async () => {
     const res = await fetch('./data.json');
     const data = await res.json();
@@ -6,16 +7,21 @@ const getData = async () => {
     return data;
 };
 
+// Load PlayerList
 const playerList = async () => {
+    // Call the API to get the cards DATA
     const dataInJson = await getData();
+
+    //Select elements from DOM
     const temp = document.querySelector("template");
-    const selectNode = temp.content.querySelector('#player-select');
     const imageSector = document.querySelector('#player-img');
     const infoSector = document.querySelector('#player-info');
     const teamFlag = document.querySelector('#player-team-flag');
 
-    teamFlag.setAttribute("class", "flag-none");
+    //Trigger the Template tag
+    const selectNode = temp.content.querySelector('#player-select');
 
+    //Populate the Dropdown selection menu with options
     dataInJson.players.forEach(card => {
         const playerID = `${card.player.id}`;
         const fullName = `${card.player.name.first} ${card.player.name.last}`;
@@ -24,44 +30,59 @@ const playerList = async () => {
         selectNode.insertAdjacentHTML('beforeend', optionNode);
     });
 
+    //Append the options to the header TAG
     document.querySelector("header").appendChild(selectNode);
 
+    //Data function based on selected player
     const addData = (id) => {
+
+        //Select elements from DOM
         const playerName = infoSector.querySelector('#player-info-name');
         const playerInfo = infoSector.querySelector('#player-info-position');
         const playerStats = infoSector.querySelector('#player-stats');
-
         const appearances = playerStats.querySelector('#appearances');
         const goals = playerStats.querySelector('#goals');
         const assists = playerStats.querySelector('#goal_assist');
         const goalsPerMatch = playerStats.querySelector('#goals_per_match');
         const passesPerMinute = playerStats.querySelector('#passes_per_minute');
 
+        //Loop on the fetched players array
         dataInJson.players.forEach(card => {
+
+            //If selected ID is matching an player ID from the array
             if (card.player.id == id) {
-                const fullName = `${card.player.name.first} ${card.player.name.last}`;
-                const image = `<img src="./assets/p${card.player.id}.png" alt="image of ${fullName}" width="200">`;
-                let position;
+
+                //Create player's fullname
+                const playerFullName = `${card.player.name.first} ${card.player.name.last}`;
+                
+                //Create player's image
+                const playerImage = `<img src="./assets/p${card.player.id}.png" alt="image of ${playerFullName}" width="200">`;
+                
+                //Define player's position based on the position letter
+                let playerPosition;
 
                 if(card.player.info.position === "D") {
-                    position = "Defender"
+                    playerPosition = "Defender"
                 }
 
                 if(card.player.info.position === "F") {
-                    position = "Forward"
+                    playerPosition = "Forward"
                 }
                 
                 if(card.player.info.position === "M") {
-                    position = "Midfielder"
+                    playerPosition = "Midfielder"
                 }
 
                 if(card.player.info.position === "G") {
-                    position = "Goalkeeper"
+                    playerPosition = "Goalkeeper"
                 }
                 
+                //Add player's current team flag
                 teamFlag.setAttribute("class", `flag-${card.player.currentTeam.id}`);
 
-                let statistic;
+
+                //Define player's statistics
+                let playerStatistic;
 
                 const totalPasses = card.stats
                     .filter(element => {
@@ -82,43 +103,43 @@ const playerList = async () => {
 
                 card.stats.forEach(stat => {
                         if (stat.name == 'appearances') {
-                            statistic = `<span class="name">Appearances</span> <span class="value">${stat.value}</span>`;
+                            playerStatistic = `<span class="name">Appearances</span> <span class="value">${stat.value}</span>`;
 
-                            appearances.innerHTML = statistic;
+                            appearances.innerHTML = playerStatistic;
                         } 
                         
                         if (stat.name == 'goals') {
-                            statistic = `<span class="name">Goals</span> <span class="value">${stat.value}</span>`;
+                            playerStatistic = `<span class="name">Goals</span> <span class="value">${stat.value}</span>`;
 
-                            goals.innerHTML = statistic;
+                            goals.innerHTML = playerStatistic;
                         }
 
                         if (stat.name == 'goal_assist') {
-                            statistic = `<span class="name">Assists</span> <span class="value">${stat.value}</span>`;
+                            playerStatistic = `<span class="name">Assists</span> <span class="value">${stat.value}</span>`;
 
-                            assists.innerHTML = statistic;
+                            assists.innerHTML = playerStatistic;
                         }
 
                         if (stat.name == 'goals' && totalMatches) {
                             let gpm = Math.ceil(stat.value / totalMatches.value * 100) / 100;
                             
-                            statistic = `<span class="name">Goals per match</span> <span class="value">${gpm}</span>`;
+                            playerStatistic = `<span class="name">Goals per match</span> <span class="value">${gpm}</span>`;
 
-                            goalsPerMatch.innerHTML = statistic;
+                            goalsPerMatch.innerHTML = playerStatistic;
                         }
 
                         if (stat.name == 'mins_played' && totalPasses) {
                             let pmp = Math.round(totalPasses.value / stat.value * 100) / 100;
 
-                            statistic = `<span class="name">Passes per minute</span> <span class="value">${pmp}</span>`;
+                            playerStatistic = `<span class="name">Passes per minute</span> <span class="value">${pmp}</span>`;
 
-                            passesPerMinute.innerHTML = statistic;
+                            passesPerMinute.innerHTML = playerStatistic;
                         }
                 })
 
-                imageSector.innerHTML = image;
-                playerName.innerHTML = fullName;
-                playerInfo.innerHTML = position;
+                imageSector.innerHTML = playerImage;
+                playerName.innerHTML = playerFullName;
+                playerInfo.innerHTML = playerPosition;
             }
         })
 
