@@ -10,6 +10,7 @@ body {
     width: 400px;
 }
 
+/* Selection DROPDOWN */
 header {
     padding: 25px;
     background-color: #ffffff;
@@ -32,6 +33,7 @@ select {
     background-size: 20px;
 }
 
+/* Player's PHOTO */
 main #player-img {
     background: url(./assets/background_pattern.png) right/74% #ffffff no-repeat;
     padding: 0 15px;
@@ -42,19 +44,7 @@ main #player-img img {
     padding-top: 20px;
 }
 
-#player-team-flag {
-    background: url(./assets/badges_sprite.png) no-repeat;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    border: 6px solid #ffffff;
-    margin-top: -50px;
-    position: relative;
-    margin-left: auto;
-    margin-right: 35px;
-    margin-bottom: -62px;
-}
-
+/* Player's INFO */
 #player-info {
     background-color: #e90052;
     padding: 25px;
@@ -75,8 +65,18 @@ main #player-img img {
     margin: 0;
 }
 
-#player-team-flag.flag-none {
-    background-position: 100% 50%;
+/* Set player and the country FLAGS */
+#player-team-flag {
+    background: url(./assets/badges_sprite.png) no-repeat;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 6px solid #ffffff;
+    margin-top: -50px;
+    position: relative;
+    margin-left: auto;
+    margin-right: 35px;
+    margin-bottom: -62px;
 }
 
 #player-team-flag.flag-21 {
@@ -99,6 +99,7 @@ main #player-img img {
     background-position: 0 0;
 }
 
+/* Player's STATS */
 #player-stats {
     list-style-type: none;
     margin: 0;
