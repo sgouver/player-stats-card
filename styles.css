@@ -38,6 +38,7 @@ main #player-img {
     background: url(./assets/background_pattern.png) right/74% #ffffff no-repeat;
     padding: 0 15px;
     display: grid;
+    height: 300px;
 }
 
 main #player-img img {

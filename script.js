@@ -44,7 +44,7 @@ const getData = async () => {
                     const playerFullName = `${card.player.name.first} ${card.player.name.last}`;
                     
                     //Create player's image
-                    const playerImage = `<img src="./assets/p${card.player.id}.png" alt="image of ${playerFullName}" width="200">`;
+                    const playerImage = `<img src="./assets/p${card.player.id}.png" alt="image of ${playerFullName}">`;
                     
                     //Define player's position based on the position letter
                     let playerPosition;
