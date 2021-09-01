@@ -84,6 +84,7 @@ const playerList = async () => {
                 //Define player's statistics
                 let playerStatistic;
 
+                //Filter and calculate the total passes of the player
                 const totalPasses = card.stats
                     .filter(element => {
                         return (
@@ -92,6 +93,7 @@ const playerList = async () => {
                         )
                     }).reduce((a, b) => ({value: a.value + b.value}));
                 
+                //Filter and calculate the total matches of the player
                 const totalMatches = card.stats
                     .filter(element => {
                         return (
@@ -101,7 +103,11 @@ const playerList = async () => {
                         )
                     }).reduce((a, b) => ({value: a.value + b.value}));
 
+                //Loop on each available stat
                 card.stats.forEach(stat => {
+
+                        //Construct stats based on stat.name, stat.value, totalPasses and totalMatches
+
                         if (stat.name == 'appearances') {
                             playerStatistic = `<span class="name">Appearances</span> <span class="value">${stat.value}</span>`;
 
@@ -137,6 +143,7 @@ const playerList = async () => {
                         }
                 })
 
+                //Apend image, full name and position to DOM
                 imageSector.innerHTML = playerImage;
                 playerName.innerHTML = playerFullName;
                 playerInfo.innerHTML = playerPosition;
@@ -145,15 +152,20 @@ const playerList = async () => {
 
     }
 
+    //Add DATA on Player selection
     const selectPlayer = () => {
-        addData(dataInJson.players[0].player.id);
-
+        //Listen to Dropdown menu changes and if a user selects a different player then triger the player card based onplayer ID
         selectNode.addEventListener("change", function(e) {
             addData(selectNode.value);
         });
     }
+
+    //Initiate the first player on the list on page load without a selection as per the provided mockups
+    addData(dataInJson.players[0].player.id);
     
+    //initiate player selection function
     selectPlayer();
 };
 
+//Initiate player fetching function
 playerList(); 
