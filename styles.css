@@ -1,8 +1,13 @@
-body {
+html {
     display: grid;
-    width: 400px;
-    margin: auto;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
     background-color: #f7f2e5;
+}
+
+body {
+    width: 400px;
 }
 
 header {
@@ -87,7 +92,7 @@ main #player-img img {
 }
 
 #player-team-flag.flag-1 {
-    background-position: -100px -100px;
+    background-position: -100px -96px;
 }
 
 #player-team-flag.flag-26 {
